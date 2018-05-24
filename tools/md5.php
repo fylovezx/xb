@@ -8,8 +8,7 @@ function getstuno($name,$conn)
     }else
     {
         $s = iconv("UTF-8", "GB2312//IGNORE", $name) ;
-        $str = strtoupper(md5($s));
-        $sql ="select num from lovezx.namelist where name='".$str."'";
+        $sql ="select num from lovezx.namelist where name='".strtoupper(md5($s))."' or name ='".strtolower(md5($s))."'";
         
         $result=mysqli_query($conn,$sql);//switch (0)
         switch (mysqli_num_rows($result))
