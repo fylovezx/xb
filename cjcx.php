@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>数据库、数据表中数据的动态输出</title>
+<title>成绩查询</title>
 <link rel="stylesheet" type="text/css" href="css/style.css">
 <style type="text/css">
 
@@ -14,7 +14,7 @@
 <script language="javascript">
  function chkinput(form){
    if(form.stuno.value==""){
-     alert("请输入学号!");
+     alert("请输入学号/姓名!");
      form.stuno.select();
 	 return(false);
    }
@@ -34,7 +34,7 @@
                 <!-- 提交学号表单 -->
                 <form name="form1" method="post" action="cjcx.php" onsubmit="return chkinput(this)">
                 <tr>
-                    <td width="104" height="25" align="right" size=10>学号：</td>
+                    <td width="104" height="25" align="right" size=10>学号/姓名：</td>
                     <td width="112" align="left"><input type="text" name="stuno" size="20" class="inputcss" /></td>
                     <td width="150"><input type="submit" name="submit" class="buttoncss" value="查看" /></td>
                 </tr>
@@ -45,15 +45,27 @@
                         <span class="STYLE1">
                             <?php
                             if(isset($_POST["submit"])!=""){
-                                $stuno=$_POST["stuno"];
-                                include('conn/conn.php') ;//包含数据库连接类文件
-                                $sql ="select stuno,exname,score,bank,extime,exmark 
-                                        from lovezx.score,lovezx.examinfo 
-                                        where score.stuno = ".$stuno." 
-                                        and  score.exid=examinfo.exid";
-                                        //+and exname in ('语文','数学')";
-                                $result=mysqli_query($conn,$sql);
-                                echo "共查询到&nbsp;".mysqli_num_rows($result)."&nbsp;条考试成绩!";
+                                include('conn/conn.php') ;//包含数据库连接类文件  
+                                include('tools/md5.php');
+                                $stuno = getstuno($_POST["stuno"],$conn);
+                                if(is_numeric($stuno)){       
+                                    $sql ="select stuno,exname,score,bank,extime,exmark 
+                                            from lovezx.score,lovezx.examinfo 
+                                            where score.stuno = ".$stuno." 
+                                            and  score.exid=examinfo.exid";
+                                            //+and exname in ('语文','数学')";
+                                    $result=mysqli_query($conn,$sql);                                    
+                                    if(mysqli_num_rows($result)<=0){
+                                        $stuexist = false;
+                                        echo "未查询到对应该姓名/学号的学生！";
+                                    }else{
+                                        $stuexist = true;
+                                        echo "共查询到&nbsp;".mysqli_num_rows($result)."&nbsp;条考试成绩!";
+                                    }
+                                }else{
+                                    $stuexist = false;
+                                    echo $stuno;        
+                                }
                             }
                             ?>
                         </span>
@@ -61,7 +73,7 @@
                 </tr>
             </table>
             <?php
-                if(@$conn){
+                if(@$stuexist){
             ?> 
             <table width="550" border="1" align="center" cellpadding="1" cellspacing="1" bordercolor="#FFFFFF" bgcolor="#FFCC33">
                 <tr>
@@ -77,7 +89,7 @@
                     <?php
                         $info=mysqli_fetch_array($result,MYSQLI_NUM);
                         if($info==NULL){
-                            echo "暂无该生信息!";
+                            //这个在上面已经处理过了
                         }else{
                             do{
                     ?>
@@ -93,11 +105,12 @@
                     <?php
                             }while($info=mysqli_fetch_array($result,MYSQLI_NUM));
                         }
-                        mysqli_close($conn);
+                       
                     ?>
             </table>
             <?php 
             }
+            @mysqli_close($conn);
             ?>
 		</td>
 	</tr>
