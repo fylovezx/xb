@@ -4,7 +4,7 @@ ul.sidenav {
     list-style-type: none;
     margin: 0;
     padding: 0;
-    width: 25%;
+    width: 10%;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -29,7 +29,7 @@ ul.sidenav li a:hover:not(.active) {
 }
 
 div.content {
-    margin-left: 25%;
+    margin-left: 15%;
     padding: 1px 16px;
     height: 1000px;
 }
@@ -47,9 +47,10 @@ div.content {
     div.content {margin-left: 0;}
 }
 
+/*
 @media screen and (max-width: 400px) {
     ul.sidenav li a {
         text-align: center;
         float: none;
     }
-}
+} */
