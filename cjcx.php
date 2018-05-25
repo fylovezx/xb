@@ -2,12 +2,10 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
+<link type="text/css" rel="stylesheet" href="css/head.css" />
 <title>成绩查询</title>
-<link rel="stylesheet" type="text/css" href="css/style.css">
 <style type="text/css">
-
 .STYLE1 {color: #FF0000}
-
 </style>
 
 </head>
@@ -20,10 +18,16 @@
    }
   return(true);
  }
- 
-
 </script>
 <body>
+<ul class="sidenav">
+  <li><a href="index.php">主页</a></li>
+  <li><a class="active" href="cjcx.php">成绩查询</a></li>
+  <li><a href="connect.php">联系</a></li>
+  <li><a href="about.php">关于</a></li>
+</ul>
+<div class="content">
+
 <table id="__01" width="900" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td>
@@ -115,5 +119,6 @@
 		</td>
 	</tr>
 </table>
+</div>
 </body>
 </html>
