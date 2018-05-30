@@ -47,8 +47,11 @@ if(!empty( $_SESSION['authority'])){
                         }
                     ?>
                 href="cjcx.php">成绩查询</a></li>
-    <?php }else{?>
-        <li><a href="login.php">成绩查询</a></li>
+    <?php }else{
+                if($_SESSION['narac']=="cjcx"){
+                    header("Location: login.php");
+                }    ?>
+                    <li><a href="login.php">成绩查询</a></li>
     <?php }?>
 
   <li><a 
