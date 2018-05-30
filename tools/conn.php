@@ -154,7 +154,7 @@ class opmysql{
             return  $num;
             break;
         default:
-            return "该名称有重名，请您输入学号进行查询";
+            return "该姓名有重名，请您输入学号进行查询";
             break;
         }
     }

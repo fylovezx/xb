@@ -9,7 +9,7 @@ if(!empty($_SESSION["name"]) and !empty($_SESSION["id"])){
 }
 
 if(!empty( $_SESSION['authority'])){
-    switch($_session['narac']){
+    switch($_SESSION['narac']){
     case "login":
         header("Location: index.php");
         break;
@@ -31,7 +31,7 @@ if(!empty( $_SESSION['authority'])){
   <li>
     <a 
     <?php 
-        if($_session['narac']=="index"){
+        if($_SESSION['narac']=="index"){
             echo "class='active'";
         }
     ?>
@@ -42,7 +42,7 @@ if(!empty( $_SESSION['authority'])){
         ?>
             <li><a 
                 <?php 
-                        if($_session['narac']=="cjcx"){
+                        if($_SESSION['narac']=="cjcx"){
                             echo "class='active'";
                         }
                     ?>
@@ -53,7 +53,7 @@ if(!empty( $_SESSION['authority'])){
 
   <li><a 
     <?php 
-            if($_session['narac']=="about"){
+            if($_SESSION['narac']=="about"){
                 echo "class='active'";
             }
         ?>
@@ -80,7 +80,7 @@ if(!empty( $_SESSION['authority'])){
             <li style="float:right">
                 <a 
                     <?php 
-                        if($_session['narac']=="login"){
+                        if($_SESSION['narac']=="login"){
                             echo "class='active'";}?>
                 href="login.php">登陆</a></li>
                 </ul>               

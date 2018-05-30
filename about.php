@@ -1,6 +1,6 @@
 <?php 
 session_start();
-$_session['narac']="about";
+$_SESSION['narac']="about";
 include "head.php" ?>
 <!DOCTYPE html>
 <html>

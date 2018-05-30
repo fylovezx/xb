@@ -1,6 +1,6 @@
 <?php 
     session_start();
-    $_session['narac']="cjcx";
+    $_SESSION['narac']="cjcx";
     include "head.php" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
@@ -48,17 +48,39 @@
                             if(isset($_POST["submit"])!=""){
                                 include_once 'tools/conn.php' ;//包含数据库连接类文件  
                                 $stuno = $conne->getstuno($_POST["stuno"]);
-                                if(is_numeric($stuno)){       
-                                    $sql ="select stuno,exname,score,bank,extime,exmark 
-                                            from lovezx.score,lovezx.examinfo 
-                                            where score.stuno = ".$stuno." 
-                                            and  score.exid=examinfo.exid";
-                                            //+and exname in ('语文','数学')";
-                                    $result= $conne->mysql_query_result($sql,true);                                
-                                    if(mysqli_num_rows($result)<=0){
-                                        echo "未查询到对应该姓名/学号的学生！";
+                                if(is_numeric($stuno)){ 
+                                    if($_SESSION['authority']=='管理员'){
+                                        //查分
+                                        $chafen = true;
+                                    }elseif($_SESSION['authority']=='粉丝'){
+                                        echo "对不起，您为粉丝，权限不够查分,请待管理员下班后会帮您修改权限!";
+                                    }elseif($_SESSION['authority']<100){
+                                        if($_SESSION['authority']==floor($stuno%100)){
+                                            //查分
+                                            $chafen = true;
+                                        }else{
+                                            echo $stuno."不是您班上的学生";
+                                        }
                                     }else{
-                                        echo "共查询到&nbsp;".mysqli_num_rows($result)."&nbsp;条考试成绩!";
+                                        if($_SESSION['authority']==$stuno){
+                                            //查分
+                                            $chafen = true;
+                                        }else{
+                                            echo "您不是".$stuno."的家长，无法查询该生分数";
+                                        }
+                                    }
+                                    if(!empty($chafen)){
+                                        $sql ="select stuno,exname,score,bank,extime,exmark 
+                                        from lovezx.score,lovezx.examinfo 
+                                        where score.stuno = ".$stuno." 
+                                        and  score.exid=examinfo.exid";
+                                        //+and exname in ('语文','数学')";
+                                        $result= $conne->mysql_query_result($sql,true);                                
+                                        if(mysqli_num_rows($result)<=0){
+                                            echo "未查询到对应该姓名/学号的学生！";
+                                        }else{
+                                            echo "共查询到&nbsp;".mysqli_num_rows($result)."&nbsp;条考试成绩!";
+                                        }
                                     }
                                 }else{
                                     echo $stuno;        
