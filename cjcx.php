@@ -1,13 +1,7 @@
 <?php 
     session_start();
     $_session['narac']="cjcx";
-    if(@$_SESSION['login']){
-
-    }else{
-        echo "<script>alert('当前页面提醒：您尚未登陆！');window.location.href='login.php'</script>";
-    }
-?>
-<?php include "head.php" ?>
+    include "head.php" ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
@@ -52,7 +46,7 @@
                         <span class="STYLE1">
                             <?php
                             if(isset($_POST["submit"])!=""){
-                                include('conn/conn.php') ;//包含数据库连接类文件  
+                                include_once 'tools/conn.php' ;//包含数据库连接类文件  
                                 $stuno = $conne->getstuno($_POST["stuno"]);
                                 if(is_numeric($stuno)){       
                                     $sql ="select stuno,exname,score,bank,extime,exmark 
@@ -60,7 +54,7 @@
                                             where score.stuno = ".$stuno." 
                                             and  score.exid=examinfo.exid";
                                             //+and exname in ('语文','数学')";
-                                    $result= $conne->mysql_query_result($sql);                                
+                                    $result= $conne->mysql_query_result($sql,true);                                
                                     if(mysqli_num_rows($result)<=0){
                                         echo "未查询到对应该姓名/学号的学生！";
                                     }else{
@@ -108,7 +102,7 @@
             </table>
             <?php 
             }
-            include_once('conn/conn.php') ;//包含数据库连接类文件
+            include_once 'tools/conn.php' ;//包含数据库连接类文件
             $conne->close_conn();
             ?>
 		</td>

@@ -1,4 +1,12 @@
 <?php
+/*
+if(is_null($_SESSION['urlphp'])){
+	header("Location: login.php");
+	//echo "<script>alert('非法访问conn');window.location.href='login.php'</script>";
+	exit();
+}else{
+	unset($_SESSION['urlphp']);
+}*/
 class opmysql{
 	private $host = '106.15.90.17';			//服务器地址
 	private $name = 'cjcx';					//登录账号
@@ -32,12 +40,13 @@ class opmysql{
 		$this->conn->query("set names utf-8");
 	}
 	//查询结果
-	function mysql_query_result($sql){
+	function mysql_query_result($sql,$rebool=false){
 		if($this->conn == ''){
 			$this->init_conn();
 		}
 		$this->result = mysqli_query($this->conn,$sql);
-		return $this->result;
+		if($rebool){
+		return $this->result;}
 	}
 	//取得字段数 
 	function getFieldsNum($sql){
@@ -77,10 +86,7 @@ class opmysql{
 	}
 	//返回更新、删除、添加记录数
 	function uidRst($sql){
-		if($this->conn == ''){
-			$this->init_conn();
-		}
-		@mysqli_query($this->conn,$sql);
+		$this->mysql_query_result($sql);
 		$this->rowsNum = @mysqli_affected_rows($this->conn);
 		if(!mysqli_connect_error()){
 			return $this->rowsNum;
@@ -93,7 +99,7 @@ class opmysql{
 		$this->mysql_query_result($sql);
 		if(!mysqli_connect_error()){
 			if(mysqli_num_rows($this->result) > 0){
-				$tmpfld = @mysqli_fetch_row($this->result);
+				$tmpfld = @mysqli_fetch_array($this->result);
 				$this->fields = $tmpfld[$fields];
 				
 			}

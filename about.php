@@ -1,7 +1,7 @@
-<?php session_start();
-    $_session['narac']="about";
-?>
-<?php include "head.php" ?>
+<?php 
+session_start();
+$_session['narac']="about";
+include "head.php" ?>
 <!DOCTYPE html>
 <html>
 <head>

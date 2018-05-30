@@ -1,7 +1,7 @@
-<?php session_start();
-    $_session['narac']="index";
-?>
-<?php include "head.php" ?>
+<?php 
+ session_start();
+$_session['narac']="index";
+include "head.php" ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -14,8 +14,6 @@
   <p>做给老婆大人用于查询成绩，</p>
   <p>希望老婆能够喜欢！</p>
 </div>
-
-
 
 </body>
 </html>

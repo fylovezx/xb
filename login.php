@@ -1,7 +1,7 @@
-<?php session_start();
-    $_session['narac']="login";
-?>
-<?php include "head.php" ?>
+<?php 
+session_start();
+$_session['narac']="login";
+include "head.php" ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -19,8 +19,8 @@
 		<td>
 			<img src="images/index_02.jpg" width="132" height="158" alt=""></td>
 		<td width="277" height="158">
-		<form action="log_ok.php" method="post">
-		<b>用户名：<input type="text" name="user" /><br><br>
+		<form action="tools/log_ok.php" method="post">
+		<b>用户名：<input type="text" name="name" /><br><br>
 		密&nbsp;码：<input type="password" name="pwd" /><br><br></b>
 		<input type="submit"name="sub"value="确定" />&nbsp;&nbsp;
 		<input type="reset"name="res"value="重置" />
