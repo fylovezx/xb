@@ -1,13 +1,20 @@
 <?php 
 session_start();
-$_SESSION['narac']="login";
-include "head.php" ?>
+$_SESSION['narac']="login"; ?>
+
 <!DOCTYPE html>
 <html>
 <head>
+<link type="text/css" rel="stylesheet" href="css/container.css" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $_SESSION['narac']?></title>
 </head>
 <body>
+
+<div class="container">
+  <div class="head" >
+    <?php require('head.php');?>
+  </div>
 
 <div class="content">
 <table id="__01" width="422" height="323" border="0" cellpadding="0" cellspacing="0">
@@ -35,7 +42,6 @@ include "head.php" ?>
 </table>
 </div>
 
-
-
+</div>
 </body>
 </html>

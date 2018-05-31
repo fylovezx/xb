@@ -1,0 +1,15 @@
+.container{
+
+margin-left:auto; 
+margin-right:auto;
+width:700px;
+}
+.head{
+    width:700px;
+}
+.content{
+    text-align:center;
+    height:auto;
+    width:700px;
+    float:left;
+}

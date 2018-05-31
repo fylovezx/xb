@@ -1,16 +1,15 @@
 <?php 
     session_start();
-    $_SESSION['narac']="cjcx";
-    include "head.php" ?>
+    $_SESSION['narac']="cjcx"; ?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=gb2312" />
-<title>成绩查询</title>
+<link type="text/css" rel="stylesheet" href="css/container.css" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title><?php echo $_SESSION['narac']?></title>
 <style type="text/css">
 .STYLE1 {color: #FF0000}
 </style>
-
 </head>
 <script language="javascript">
  function chkinput(form){
@@ -23,9 +22,14 @@
  }
 </script>
 <body>
+<div class="container">
+  <div class="head" >
+    <?php require('head.php');?>
+  </div>
+
 <div class="content">
 
-<table id="__01" width="900" border="0" cellpadding="0" cellspacing="0">
+<table id="__01" width="700" border="0" cellpadding="0" cellspacing="0">
 	<tr>
 		<td>
             <table width="567" border="0" align="center" cellpadding="0" cellspacing="0">
@@ -130,6 +134,7 @@
 		</td>
 	</tr>
 </table>
+</div>
 </div>
 </body>
 </html>

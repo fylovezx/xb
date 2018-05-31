@@ -7,7 +7,6 @@ if(!empty($_SESSION["name"]) and !empty($_SESSION["id"])){
     $_SESSION['authority'] = $conne->getFields($sql,'authority');//获取权限
     $conne->close_rst();				//关闭数据库
 }
-
 if(!empty( $_SESSION['authority'])){
     switch($_SESSION['narac']){
     case "login":
@@ -15,8 +14,6 @@ if(!empty( $_SESSION['authority'])){
         break;
     }  
 }
-
-
 
 ?>
 <!DOCTYPE html>

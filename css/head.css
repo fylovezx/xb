@@ -29,6 +29,13 @@ ul.sidenav li a.active {
     background-color: #4CAF50;
 }
 
+ul.sidenav li lable.active {
+    color: white;
+    background-color: #4CAF50;
+}
+
+
+
 .dropdown-content
 {
   display:none;

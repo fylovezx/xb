@@ -31,7 +31,7 @@ class opmysql{
 			$this->pwd = $pwd;
 		if($dBase != '')
 			$this->dBase = $dBase;
-		$this->init_conn();
+		//$this->init_conn();
 	}
 	//连接数据库
 	function init_conn(){
